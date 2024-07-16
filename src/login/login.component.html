@@ -1,7 +1,7 @@
 <section class="login">
   <div class="container">
     <h1 class="login_head">Login</h1>
-    <form action="" method="post">
+    <form (ngSubmit)="login()">
       <label for="Email" class="labels">Email:</label>
       <input
         type="email"
@@ -9,6 +9,8 @@
         id="email"
         name="email"
         placeholder="Enter your email"
+        [(ngModel)]="loginObj.email"
+        required
       />
 
       <label for="Password" class="labels" id="password_label"
@@ -20,12 +22,13 @@
         id="password"
         name="password"
         placeholder="Enter your password"
+        [(ngModel)]="loginObj.password"
+        required
       />
+      <button class="submit" type="submit">Login</button>
     </form>
-    <button class="submit" type="button" onclick="login()">Login</button>
     <p class="register">
-      Do not have an account? <a href="../sign-up">Register Here</a>
+      Do not have an account? <a href="/signUp">Register Here</a>
     </p>
   </div>
 </section>
-<script src="script.js"></script>

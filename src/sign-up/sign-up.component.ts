@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../app/api.service';
-import { response } from 'express';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,25 +11,27 @@ import { FormsModule } from '@angular/forms';
 })
 export class SignUpComponent {
   constructor(private apiService: ApiService){
-
+    
   }
-  signUpObj:any={
+  signUpObj: any ={
     name: '',
     email: '',
+    gender: null,
     password: '',
-    confirmPassword: '',
+    confirmPassword: ''
   }
+
   signUp(){
     if(this.signUpObj.password != this.signUpObj.confirmPassword){
-      alert("Both Password and Confirm Password should be same.")
+      alert("Password and confirm password should be same.")
     }
 
     this.apiService.signUp(this.signUpObj).subscribe(
-      response => {
-        console.log("Registration Successfull.")
+      response=>{
+        console.log("Registration Successful")
       },
-      error =>{
-        console.log("Error Occured during registration.")
+      error=>{
+        console.log("Error Occured During Registration.")
       }
     )
   }

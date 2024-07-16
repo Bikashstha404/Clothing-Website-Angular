@@ -1,7 +1,9 @@
-* {
+*{
     margin: 0;
     padding: 0;
 }
+
+
 .register {
     font-family: Arial, sans-serif;
     background-image: url('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_960_720.jpg');
@@ -13,6 +15,7 @@
     align-items: center;
     height: 93vh;
 }
+
 
 .container {
     box-sizing: border-box;
@@ -27,7 +30,7 @@
     margin-bottom: 20px;
     color: black;
 }
-
+ 
 .labels {
     display: inline-block;
     font-weight: bold;
@@ -35,13 +38,6 @@
     margin-right: 7vw;
 }
 
-#password_label {
-    margin-right: 4vw;
-}
-
-#confirm_password_label{
-    margin-right: 1.1vw;
-}
 .inputs {
     display: inline-block;
     width: 60%;
@@ -51,7 +47,6 @@
     border-radius: 5px;
     font-size: 16px;
 }
-
 .submit {
     width: 100%;
     padding: 10px;
@@ -63,7 +58,18 @@
     cursor: pointer;
     margin-bottom: 8px;
 }
-
 .submit:hover {
     background-color: gray;
+}
+
+#gender{
+    width:64%;
+    margin-left:-0.8vw;
+}
+#password {
+    margin-left: -2vw;
+}
+
+#confirm_password{
+    margin-left: -6vw;
 }

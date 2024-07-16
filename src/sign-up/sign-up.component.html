@@ -1,54 +1,68 @@
 <section class="register">
-    <div class="container">
-      <h1 class="register_head">Register Form</h1>
-      <form (ngSubmit)="signUp()">
-        <label for="name" class="labels">Name:</label>
-        <input
-          type="text"
-          class="inputs"
-          id="name"
-          name="name"
-          placeholder="Enter your name"
-          [(ngModel)]="signUpObj.name"
-          required
-        />
-  
-        <label for="email" class="labels">Email:</label>
-        <input
-          type="email"
-          class="inputs"
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-          [(ngModel)]="signUpObj.email"
-          required
-        />
-  
-        <label for="password" class="labels">Password:</label>
-        <input
-          type="password"
-          class="inputs"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-          [(ngModel)]="signUpObj.password"
-          required
-        />
-  
-        <label for="confirm_password" class="labels">Confirm Password:</label>
-        <input
-          type="password"
-          class="inputs"
-          id="confirm_password"
-          name="confirm_password"
-          placeholder="Re-enter your password"
-          [(ngModel)]="signUpObj.confirmPassword"
-          required
-        />
-  
-        <button class="submit" type="submit">Submit</button>
-      </form>
-      <p class="login">Already have an account? <a routerLink="/login">Login</a></p>
-    </div>
-  </section>
-  
+  <div class="container">
+    <h1 class="register_head">Register Form</h1>
+    <form (ngSubmit)="signUp()">
+      <label for="name" class="labels">Name:</label>
+      <input
+        type="text"
+        class="inputs"
+        id="name"
+        name="name"
+        placeholder="Enter your name"
+        [(ngModel)]="signUpObj.name"
+        required
+      />
+
+      <label for="gender" class="labels">Gender:</label>
+      <select
+        id="gender"
+        class="inputs"
+        name="gender"
+        [(ngModel)]="signUpObj.gender"
+        required
+      >
+        <option value="" disabled selected>Select your gender</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
+
+      <label for="email" class="labels">Email:</label>
+      <input
+        type="email"
+        class="inputs"
+        id="email"
+        name="email"
+        placeholder="Enter your email"
+        [(ngModel)]="signUpObj.email"
+        required
+      />
+
+      <label for="password" class="labels">Password:</label>
+      <input
+        type="password"
+        class="inputs"
+        id="password"
+        name="password"
+        placeholder="Enter your password"
+        [(ngModel)]="signUpObj.password"
+        required
+      />
+
+      <label for="confirm_password" class="labels">Confirm Password:</label>
+      <input
+        type="password"
+        class="inputs"
+        id="confirm_password"
+        name="confirm_password"
+        placeholder="Re-enter your password"
+        [(ngModel)]="signUpObj.confirmPassword"
+        required
+      />
+      <button class="submit" type="submit">Submit</button>
+    </form>
+    <p class="login">
+      Already have an account? <a href="/login">Login</a>
+    </p>
+  </div>
+</section>

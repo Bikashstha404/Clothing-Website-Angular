@@ -9,7 +9,11 @@ export class ApiService {
 
   constructor(private http:HttpClient) { }
 
-  signUp(model:any):Observable<void>{
-    return this.http.post<void>(`http://localhost:5131/api/Auth/SignUp`,model)
+  signUp(model: any):Observable<void>{
+    return this.http.post<void>(`http://localhost:5143/api/Auth/SignUp`,model)
+  }
+
+  login(model: any): Observable<void>{
+    return this.http.post<void>(`http://localhost:5143/api/Auth/Login`, model)
   }
 }
