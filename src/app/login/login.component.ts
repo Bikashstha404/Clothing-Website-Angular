@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ApiService } from '../app/api.service';
+import { ApiService } from '../api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { ApiService } from '../app/api.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private apiService: ApiService){
+  constructor(private apiService: ApiService, private router: Router){
     
   }
   loginObj: any ={
@@ -22,6 +23,7 @@ export class LoginComponent {
     this.apiService.login(this.loginObj).subscribe(
       response=>{
         console.log("Login Successful")
+        this.router.navigate(['/home']);
       },
       error=>{
         console.log("Login Failed.")

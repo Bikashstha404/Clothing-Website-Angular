@@ -22,9 +22,7 @@
         required
       >
         <option value="" disabled selected>Select your gender</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
+        <option *ngFor="let gender of genderOptions" [value]="gender.value">{{gender.label}}</option>
       </select>
 
       <label for="email" class="labels">Email:</label>
