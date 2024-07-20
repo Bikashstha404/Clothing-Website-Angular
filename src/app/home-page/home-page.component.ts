@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-home-page',
@@ -8,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent {
+  constructor(private api: ApiService){
 
+  }
+
+  logOut(){
+    this.api.signOut();
+  }
 }

@@ -23,6 +23,7 @@ export class LoginComponent {
     this.apiService.login(this.loginObj).subscribe(
       response=>{
         console.log("Login Successful")
+        this.apiService.storeToken(response.token);
         this.router.navigate(['/home']);
       },
       error=>{
