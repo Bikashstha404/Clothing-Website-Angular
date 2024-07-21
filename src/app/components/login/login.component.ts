@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-login',
   standalone: true,
-  imports: [RouterOutlet, RouterModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  imports: [RouterModule],
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
-export class AppComponent {
-  title = 'Clothing-Website-Angular';
+export class LoginComponent {
 
   type: string ="password";
   isText: boolean = false;
@@ -20,5 +18,4 @@ export class AppComponent {
     this.isText ? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-eye-slash";
     this.isText ? this.type = "text" : this.type = "password";
   }
-  
 }
