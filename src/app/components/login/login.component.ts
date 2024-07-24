@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import ValidateForm from '../helpers/validateForm';
 
 @Component({
   selector: 'app-login',
@@ -35,20 +36,9 @@ export class LoginComponent {
     if(this.loginForm.valid){
       console.log("")
     }else{
-      this.validateAllFormFields(this.loginForm);
+      ValidateForm.validateAllFormFields(this.loginForm);
       alert("Your form is invalid")
     }
   }
 
-  private validateAllFormFields(formGroup: FormGroup){
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if(control instanceof FormControl){
-        control.markAsDirty({onlySelf:true});
-      }
-      else if(control instanceof FormGroup){
-        this.validateAllFormFields(control)
-      }
-    })
-  }
 }

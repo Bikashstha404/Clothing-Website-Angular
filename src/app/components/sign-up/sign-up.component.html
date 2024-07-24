@@ -48,8 +48,8 @@
                                 </div>
                             </div>
                             <small *ngIf="signUpForm.controls['confirmPassword'].dirty && signUpForm.hasError('required', 'confirmPassword')" class="text-danger">*Confirm Password is required</small>
-                            <button (onClick)="onSignUp()" type="submit" class="btn btn-primary btn-block mt-4 w-100">
-                                Login
+                            <button (click)="onSignUp()" type="submit" class="btn btn-primary btn-block mt-4 w-100">
+                                Sign Up
                             </button>
                             <div class="text-center pt-4 text-muted">
                                 Already have a account?

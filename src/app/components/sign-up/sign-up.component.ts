@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import ValidateForm from '../helpers/validateForm';
 
 @Component({
   selector: 'app-sign-up',
@@ -44,6 +45,8 @@ export class SignUpComponent {
     if(this.signUpForm.valid){
       console.log(this.signUpForm.value);
     }
+    else{
+      ValidateForm.validateAllFormFields(this.signUpForm)
+    }
   }
-
 }
