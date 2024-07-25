@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import ValidateForm from '../helpers/validateForm';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +16,7 @@ export class SignUpComponent {
   
   signUpForm: FormGroup;
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router){
     this.signUpForm = this.fb.group({
       name:['', Validators.required],
       gender:['', Validators.required],
@@ -30,6 +31,20 @@ export class SignUpComponent {
     { value: 1, label: 'Female' },
     { value: 2, label: 'Other' }
   ];
+
+  genderIcon: string = "fa-question-circle";
+  changeGenderIcon(){
+    const genderValue = this.signUpForm.value.gender;
+    if(genderValue == 0){
+      this.genderIcon = "fa-mars";
+    }
+    else if(genderValue == 1){
+      this.genderIcon = "fa-venus"
+    }
+    else{
+      this.genderIcon = "fa-transgender-alt"
+    }
+  }
   
   isText: boolean = false;
   type: string ="password";
@@ -43,7 +58,21 @@ export class SignUpComponent {
 
   onSignUp(){
     if(this.signUpForm.valid){
-      console.log(this.signUpForm.value);
+      // if(this.signUpForm.value.password != this.signUpForm.value.confirmPassword){
+      //   alert("Both Password and Confirm Password should be same.")
+      // }
+      const formValue = this.signUpForm.value;
+      formValue.gender = parseInt(formValue.gender);
+      this.apiService.signUp(this.signUpForm.value).subscribe({
+        next: (response)=>{
+          alert("Registration Successfull")
+          this.signUpForm.reset()
+          this.router.navigate(['login']);
+        },
+        error: (err)=>{
+          alert(err?.error.message);
+        }
+      })
     }
     else{
       ValidateForm.validateAllFormFields(this.signUpForm)
