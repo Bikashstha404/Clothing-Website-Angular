@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { NgToastModule } from 'ng-angular-popup';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterModule],
+  imports: [RouterOutlet, RouterModule, NgToastModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

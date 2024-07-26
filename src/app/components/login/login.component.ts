@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import ValidateForm from '../helpers/validateForm';
 import { ApiService } from '../services/api.service';
+import { ToastrService } from 'ngx-toastr';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,7 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router) {
+  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, private toast: NgToastService,private toaster: ToastrService ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -38,12 +40,16 @@ export class LoginComponent {
       console.log("Login Form Data: ",this.loginForm.value);
       this.apiService.login(this.loginForm.value).subscribe({
         next: (response) => {
-          alert("Login Successful");
+          // alert("Login Successful");
+          this.toast.success("Login Successful", "SUCCESS", 5000);
+          this.toaster.success("Login Successful", "SUCCESS");
           this.loginForm.reset();
           this.router.navigate(['dashboard']);
         },
         error: (err) => {
-          alert(err?.error.message)
+          this.toast.danger(err?.error.message, "ERROR", 5000);
+          this.toaster.error(err?.error.message, "ERROR");
+          // alert(err?.error.message)
         }
       })
     } else {
