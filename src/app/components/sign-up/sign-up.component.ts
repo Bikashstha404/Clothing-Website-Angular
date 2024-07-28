@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import ValidateForm from '../helpers/validateForm';
-import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,7 +16,7 @@ export class SignUpComponent {
   
   signUpForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router){
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router){
     this.signUpForm = this.fb.group({
       name:['', Validators.required],
       gender:['', Validators.required],
@@ -63,7 +63,7 @@ export class SignUpComponent {
       // }
       const formValue = this.signUpForm.value;
       formValue.gender = parseInt(formValue.gender);
-      this.apiService.signUp(this.signUpForm.value).subscribe({
+      this.authService.signUp(this.signUpForm.value).subscribe({
         next: (response)=>{
           alert("Registration Successfull")
           this.signUpForm.reset()

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import ValidateForm from '../helpers/validateForm';
-import { ApiService } from '../services/api.service';
+import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgToastService } from 'ng-angular-popup';
 
@@ -18,7 +18,7 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private apiService: ApiService, private router: Router, private toast: NgToastService,private toaster: ToastrService ) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toast: NgToastService,private toaster: ToastrService ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -38,9 +38,10 @@ export class LoginComponent {
   onLogin() {
     if (this.loginForm.valid) {
       console.log("Login Form Data: ",this.loginForm.value);
-      this.apiService.login(this.loginForm.value).subscribe({
+      this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
           // alert("Login Successful");
+          this.authService.storeToken(response.token);
           this.toast.success("Login Successful", "SUCCESS", 5000);
           this.toaster.success("Login Successful", "SUCCESS");
           this.loginForm.reset();

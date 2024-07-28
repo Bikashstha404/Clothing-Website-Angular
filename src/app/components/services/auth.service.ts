@@ -27,7 +27,10 @@ export class AuthService {
   }
 
   getToken(): string | null{
-    return localStorage.getItem('token');
+    if (this.isBrowser()) {
+      return localStorage.getItem('token');
+    }
+    return null;
   }
 
   isLoggedIn(): boolean{
@@ -35,8 +38,15 @@ export class AuthService {
   }
 
   signOut(){
-    localStorage.clear();
-    // localStorage.removeItem('token');
-    this.router.navigate(['login']);
+     if (this.isBrowser()) {
+      localStorage.clear();
+      // localStorage.removeItem('token');
+      this.router.navigate(['login']);
+    }
   }
+  
+  private isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof localStorage !== 'undefined';
+  }
+
 }
