@@ -18,7 +18,7 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toast: NgToastService,private toaster: ToastrService ) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private router: Router, private toast: NgToastService, private toastr: ToastrService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -37,19 +37,19 @@ export class LoginComponent {
 
   onLogin() {
     if (this.loginForm.valid) {
-      console.log("Login Form Data: ",this.loginForm.value);
+      console.log("Login Form Data: ", this.loginForm.value);
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
           // alert("Login Successful");
           this.authService.storeToken(response.token);
           this.toast.success("Login Successful", "SUCCESS", 5000);
-          this.toaster.success("Login Successful", "SUCCESS");
+          this.toastr.success("Login Successful", "SUCCESS");
           this.loginForm.reset();
           this.router.navigate(['dashboard']);
         },
         error: (err) => {
           this.toast.danger(err?.error.message, "ERROR", 5000);
-          this.toaster.error(err?.error.message, "ERROR");
+          this.toastr.error(err?.error.message, "ERROR");
           // alert(err?.error.message)
         }
       })

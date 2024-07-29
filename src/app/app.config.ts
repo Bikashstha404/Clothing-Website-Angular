@@ -8,6 +8,6 @@ import { provideToastr } from 'ngx-toastr';
 import { tokenInterceptor } from './components/interceptors/token.interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(withFetch()), provideToastr()]
+  providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(withFetch(), withInterceptors([tokenInterceptor])), provideToastr()]
   // providers: [provideRouter(routes), provideClientHydration(), provideHttpClient(withFetch()), provideToastr()]
 };
