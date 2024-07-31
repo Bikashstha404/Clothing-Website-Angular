@@ -43,7 +43,7 @@ export class LoginComponent {
           // alert("Login Successful");
           this.authService.storeToken(response.token);
           this.toast.success("Login Successful", "SUCCESS", 5000);
-          this.toastr.success("Login Successful", "SUCCESS");
+          // this.toastr.success("Login Successful", "SUCCESS");
           this.loginForm.reset();
           this.router.navigate(['dashboard']);
         },

@@ -1,5 +1,10 @@
-<p>dashboard works!</p>
-<button class="btn btn-danger" (click)="logout()">Logout</button>
-<ul *ngFor="let user of users">
-    <li>{{user.name}}</li>
-</ul>
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand">Navbar</a>
+        <div>
+            <h4>Hello {{name}}</h4>
+        </div>
+    </div>
+  </nav>
+
+  <button (click)="logout()">logout</button>
