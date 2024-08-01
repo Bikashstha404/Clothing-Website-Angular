@@ -1,10 +1,113 @@
-<nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand">Navbar</a>
-        <div>
-            <h4>Hello {{name}}</h4>
-        </div>
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a href="" class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6">Hello {{name}}</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+    data-bs-target="#navbarNav">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <input type="text" class="form-control form-control-dark w-100 rounded-10 border-0" placeholder="Search">
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a (click)="logout()" class="nav-link px-3 cursor-pointer">Sign Out</a>
     </div>
-  </nav>
+  </div>
+</header>
 
-  <button (click)="logout()">logout</button>
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" id="sidebarMenu">
+      <div class="position-sticky pt-3 sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active d-flex align-items-center" aria-current="page" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                class="me-2">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+              </svg>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active d-flex align-items-center" aria-current="page" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                class="me-2">
+                <path
+                  d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-4-6zm-1 3V3.27L17.73 8H13zM6 20V4h8v5h5v11H6z" />
+              </svg>
+              Documents
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active d-flex align-items-center" aria-current="page" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"
+                class="me-2">
+                <path
+                  d="M7 4h-2l-3 7v2h1.5l1.25 3.09L7 14.5v-1.6h10v1.6l1.25-3.09L21 13h1v-2h-1l-3-7h-7zm-1 4h10.4l2.1 4.7L17 16H8l-2-4.7L6 8zm1 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z" />
+              </svg>
+              Shopping Cart
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active d-flex align-items-center" aria-current="page" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor"
+                class="me-2">
+                <path
+                  d="M12 12c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm0 2c-3.3 0-6 2.7-6 6v2h12v-2c0-3.3-2.7-6-6-6zM18 13.2c1.3 1.2 2 2.8 2 4.8v2h-4v-2c0-2-0.7-3.6-2-4.8-1.2-1.2-2.8-2-4.8-2s-3.6 0.8-4.8 2c-1.3 1.2-2 2.8-2 4.8v2H2v-2c0-3.5 2.8-6.4 6.3-6.8C8.8 8.5 10.4 8 12 8s3.2 0.5 4.7 1.2c3.5 0.4 6.3 3.3 6.3 6.8v2h-4v-2c0-2-0.7-3.6-2-4.8z" />
+              </svg>
+              Customers
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="chartjs-monitor">
+        <div class="chartjs-size-monitor-expand">
+          <div class=""></div>
+        </div>
+        <div class="chartjs-size-monitor-shrink">
+          <div class=""></div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group me-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19 3h-1V2h-2v1H8V2H6v1H5c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H5V8h14v13zM5 6V5h1v1h2V5h8v1h2V5h1v1h1v13h-1v-1H5v1H4V6h1z"/>
+            </svg>
+            This Week
+          </button>
+        </div>
+      </div>
+
+      <h2>Employee List</h2>
+      <div class="table-responsive">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">S.N</th>
+              <th scope="col">Username</th>
+              <th scope="col">Gender</th>
+              <th scope="col">Email</th>
+              <th scope="col">Role</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users; let i=index">
+              <td>{{i+1}}</td>
+              <td>{{user.name}}</td>
+              <td>{{user.gender}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.role}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>

@@ -24,7 +24,6 @@ export class UserStoreService {
   }
 
   public setNameForStore(name: string){
-    console.log("Name, ", name)
-    this.name$.next("Bigyan" + name);
+    this.name$.next(name);
   }
 }
