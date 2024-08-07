@@ -14,18 +14,20 @@ import { UserStoreService } from '../services/user-store.service';
 export class DashboardComponent {
 
   public users: any =[];
-  public name: string = ""
+  public name: string = "";
+  public role: string = "";
   constructor(private authService: AuthService, private userService: UserService, private userStore: UserStoreService){
 
   }
 
-  ngOnInit(){
+  ngOnInit(): void{
     this.userService.getAllUsers().subscribe({
       next: (response)=>{
         this.users = response;
+        console.log("Users:   ", this.users)
       },
       error: (err)=>{
-        console.log(err?.error.message)
+        console.log("Error fetching users: ", err)
       }
     })
 
@@ -33,6 +35,13 @@ export class DashboardComponent {
       let nameFromToken = this.authService.getNameFromToken();
       this.name = value || nameFromToken;
     })
+
+    this.userStore.getRoleFromStore().subscribe(value=>{
+      let roleFromToken = this.authService.getRoleFromToken();
+      this.role = value || roleFromToken;
+    })
+
+    console.log("Name", this.name, "  Role: ", this.role)
   }
 
   logout(){
