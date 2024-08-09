@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Validators, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import ValidateForm from '../helpers/validateForm';
 import { AuthService } from '../services/auth.service';
@@ -11,7 +11,7 @@ import { UserStoreService } from '../services/user-store.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule, CommonModule],
+  imports: [RouterModule, ReactiveFormsModule, CommonModule, FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -34,6 +34,27 @@ export class LoginComponent {
     this.isText = !this.isText;
     this.isText ? this.eyeIcon = "fa-eye" : this.eyeIcon = "fa-eye-slash";
     this.isText ? this.type = "text" : this.type = "password";
+  }
+
+  public resetPasswordEmail! : string;
+  public isVaidEmail! : boolean;
+  
+
+  checkValidEmail(event : string){
+    const value = event;
+    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    this.isVaidEmail = pattern.test(value);
+    return this.isVaidEmail;
+  }
+
+  confirmToSend(){
+    if(this.checkValidEmail(this.resetPasswordEmail)){
+      console.log(this.resetPasswordEmail)
+      this.resetPasswordEmail = ""
+      const buttonRef = document.getElementById("closeBtn");
+      buttonRef?.click()
+    }
   }
 
   onLogin() {
