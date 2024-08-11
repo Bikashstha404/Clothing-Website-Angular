@@ -7,6 +7,7 @@ import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgToastService } from 'ng-angular-popup';
 import { UserStoreService } from '../services/user-store.service';
+import { ResetPasswordService } from '../services/reset-password.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent {
 
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private userStore: UserStoreService,private router: Router, private toast: NgToastService, private toastr: ToastrService) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private userStore: UserStoreService, private router: Router, private toast: NgToastService, private toastr: ToastrService, private resetService: ResetPasswordService) {
     this.loginForm = this.fb.group({
       email: ['stha.bikam99@gmail.com', [Validators.required, Validators.email]],
       password: ['Bikash@123', Validators.required]
@@ -36,11 +37,11 @@ export class LoginComponent {
     this.isText ? this.type = "text" : this.type = "password";
   }
 
-  public resetPasswordEmail! : string;
-  public isVaidEmail! : boolean;
-  
+  public resetPasswordEmail!: string;
+  public isVaidEmail!: boolean;
 
-  checkValidEmail(event : string){
+
+  checkValidEmail(event: string) {
     const value = event;
     const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -48,12 +49,20 @@ export class LoginComponent {
     return this.isVaidEmail;
   }
 
-  confirmToSend(){
-    if(this.checkValidEmail(this.resetPasswordEmail)){
-      console.log(this.resetPasswordEmail)
-      this.resetPasswordEmail = ""
-      const buttonRef = document.getElementById("closeBtn");
-      buttonRef?.click()
+  confirmToSend() {
+    if (this.checkValidEmail(this.resetPasswordEmail)) {
+      this.resetService.sendResetPasswordLink(this.resetPasswordEmail).subscribe({
+        next: (res)=>{
+          this.resetPasswordEmail=""
+          const buttonRef = document.getElementById("closeBtn");
+          buttonRef?.click()
+          console.log("Email sent for the reset password")
+        },
+        error: (err)=>{
+          // this.toast.error("")
+          console.log("Error during sending resetPassword Link: ", err?.error.message)
+        }
+      })
     }
   }
 
